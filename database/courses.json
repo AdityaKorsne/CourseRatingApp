@@ -1,0 +1,32 @@
+{
+  "airtribe": [
+    {
+      "course": "Backend Engineering",
+      "courseId": "1",
+      "mentor": "Pawan",
+      "job": "linkedIn",
+      "averageRating": "9.55"
+    },
+    {
+      "course": "Product Management",
+      "courseId": "2",
+      "mentor": "Aryan",
+      "job": "Airtribe",
+      "averageRating": "9"
+    },
+    {
+      "course": "Python",
+      "courseId": "3",
+      "mentor": "DurgaSoft",
+      "job": "Backend Developer",
+      "averageRating": "9.5"
+    },
+    {
+      "course": "Python",
+      "courseId": "4",
+      "mentor": "DurgaSoft",
+      "job": "Backend Developer",
+      "averageRating": "9.5"
+    }
+  ]
+}
