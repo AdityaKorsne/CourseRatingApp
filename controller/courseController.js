@@ -5,7 +5,6 @@ const bodyparser = require("body-parser");
 const data = require("../database/courses.json");
 const validator = require("../model/courseModel");
 const fs = require("fs");
-const { object, exist } = require("joi");
 
 const app = express();
 
