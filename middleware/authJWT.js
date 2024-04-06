@@ -8,7 +8,7 @@ function verifyToken(req, res, next) {
         req.message = "Invalid accessToken";
         next();
       } else {
-        req.user = { id: data.id, name: data.name };
+        req.user = { id: data.id, role: data.role };
         req.message = "user found successfully";
         next();
       }

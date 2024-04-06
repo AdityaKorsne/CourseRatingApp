@@ -72,30 +72,34 @@ router.delete("/course/:id", (req, res) => {
 // CREATE COURSE
 router.post("/course", verifyToken, (req, res) => {
   if (req.user) {
-    let newCourse = req.body;
-    const existData = data;
-    const allCourses = existData.airtribe;
-    const checkSchema = validator.checkProperties(newCourse);
-    if (checkSchema.error) {
-      res.status(400).send(checkSchema.error.message);
-    } else if (!validator.uniqueCourseIdValidation(newCourse, allCourses)) {
-      res.status(400).json({
-        Status: "Failed",
-        Message: `courseId ${newCourse.courseId} already exists.`,
-      });
+    if (req.user.role == "admin") {
+      let newCourse = req.body;
+      const existData = data;
+      const allCourses = existData.airtribe;
+      const checkSchema = validator.checkProperties(newCourse);
+      if (checkSchema.error) {
+        res.status(400).send(checkSchema.error.message);
+      } else if (!validator.uniqueCourseIdValidation(newCourse, allCourses)) {
+        res.status(400).json({
+          Status: "Failed",
+          Message: `courseId ${newCourse.courseId} already exists.`,
+        });
+      } else {
+        console.log(allCourses);
+        allCourses.push(newCourse);
+        console.log(allCourses);
+        fs.writeFileSync(
+          "./database/courses.json",
+          JSON.stringify(existData, null, 2),
+          {
+            encoding: "utf-8",
+            flag: "w",
+          }
+        );
+        res.status(200).json({ Status: "successful", Message: "course added" });
+      }
     } else {
-      console.log(allCourses);
-      allCourses.push(newCourse);
-      console.log(allCourses);
-      fs.writeFileSync(
-        "./database/courses.json",
-        JSON.stringify(existData, null, 2),
-        {
-          encoding: "utf-8",
-          flag: "w",
-        }
-      );
-      res.status(200).json({ Status: "successful", Message: "course added" });
+      res.status(401).json({ Message: "only admin can post courses" });
     }
   } else {
     res.status(404).json({ Message: req.message });

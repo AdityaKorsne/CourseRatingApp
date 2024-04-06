@@ -46,14 +46,19 @@ router.post("/login", (req, res) => {
           .status(401)
           .json({ Status: "failed", Message: "Invalid password" });
       }
-      const token = jwt.sign({ id: data.id }, process.env.SECRET, {
-        expiresIn: 84600,
-      });
+      const token = jwt.sign(
+        { id: data.id, role: data.role },
+        process.env.SECRET,
+        {
+          expiresIn: 84600,
+        }
+      );
       res.status(200).json({
         Status: "Log in successful",
         userInfo: {
           name: data.fullName,
           email: data.email,
+          role: data.role,
         },
         accessToken: token,
       });
