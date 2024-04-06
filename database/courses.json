@@ -27,6 +27,13 @@
       "mentor": "DurgaSoft",
       "job": "Backend Developer",
       "averageRating": "9.5"
+    },
+    {
+      "course": "Java Real Time Project",
+      "courseId": "5",
+      "mentor": "Mr. Nataraj",
+      "job": "Naresh IT",
+      "averageRating": "9.0"
     }
   ]
 }
