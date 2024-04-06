@@ -28,4 +28,30 @@ router.post("/register", (req, res) => {
   }
 });
 
+router.get("/usersDetails", (req, res) => {
+  USER.find()
+    .then((data) => res.status(200).send(data))
+    .catch((err) => res.status(500).send(err));
+});
+
+router.get("/:id", (req, res) => {
+  USER.findById(req.params.id)
+    .then((data) => res.status(200).send(data))
+    .catch((err) => res.status(400).send(err));
+});
+
+router.patch("/:id", (req, res) => {
+  USER.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then((data) => res.status(200).send(data))
+    .catch((err) => res.status(400).send(err));
+});
+
+router.delete("/:id", (req, res) => {
+  USER.findByIdAndDelete(req.params.id)
+    .then((data) =>
+      res.status(200).json({ Message: "user deleted successfully" })
+    )
+    .catch((err) => res.status(400).send(err));
+});
+
 module.exports = router;
